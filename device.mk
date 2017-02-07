@@ -205,7 +205,8 @@ PRODUCT_PACKAGES += \
     vr.msm8996
 
 PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.vr.high_performance.xml:system/etc/permissions/android.hardware.vr.high_performance.xml
+    frameworks/native/data/etc/android.hardware.vr.high_performance.xml:system/etc/permissions/android.hardware.vr.high_performance.xml \
+    $(LOCAL_PATH)/configs/thermal-engine-vr.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-engine-vr.conf
 
 # Dumpstate HAL
 PRODUCT_PACKAGES += \
