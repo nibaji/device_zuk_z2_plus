@@ -197,6 +197,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.dumpstate@1.0-service.msm8996
 
+# Doze mode
+PRODUCT_PACKAGES += \
+    ZukDoze
+
 # SDcard
 PRODUCT_CHARACTERISTICS := nosdcard
 
