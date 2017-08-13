@@ -200,6 +200,13 @@ PRODUCT_PACKAGES += \
 # HIDL
     $(call inherit-product, $(LOCAL_PATH)/hidl.mk)
 
+# VR
+PRODUCT_PACKAGES += \
+    vr.msm8996
+
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.vr.high_performance.xml:system/etc/permissions/android.hardware.vr.high_performance.xml
+
 # Dumpstate HAL
 PRODUCT_PACKAGES += \
     android.hardware.dumpstate@1.0-service.msm8996
