@@ -24,7 +24,7 @@
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-import init.qcom.power.rc
+
 import init.qcom.usb.rc
 
 on early-init
@@ -174,61 +174,56 @@ on boot
     chmod 0660 /sys/module/dwc3/parameters/usb30_disabled
 
     # RGB light
-    chown system system /sys/class/leds/led:rgb_red/brightness
-    chmod 0660 /sys/class/leds/led:rgb_red/brightness
-    chown system system /sys/class/leds/led:rgb_green/brightness
-    chmod 0660 /sys/class/leds/led:rgb_green/brightness
-    chown system system /sys/class/leds/led:rgb_blue/brightness
-    chmod 0660 /sys/class/leds/led:rgb_blue/brightness
+    chown system system /sys/class/leds/red/brightness
+    chown system system /sys/class/leds/green/brightness
+    chown system system /sys/class/leds/blue/brightness
 
-    chown system system /sys/class/leds/led:rgb_blue/blink
-    chmod 0660 /sys/class/leds/led:rgb_blue/blink
-    chown system system /sys/class/leds/led:rgb_red/blink
-    chmod 0660 /sys/class/leds/led:rgb_red/blink
-    chown system system /sys/class/leds/led:rgb_green/blink
-    chmod 0660 /sys/class/leds/led:rgb_green/blink
+    chown system system /sys/class/leds/red/pause_lo
+    chown system system /sys/class/leds/green/pause_lo
+    chown system system /sys/class/leds/blue/pause_lo
 
-    chown system system /sys/class/leds/led:rgb_blue/ramp_step_ms
-    chmod 0660 /sys/class/leds/led:rgb_blue/ramp_step_ms
-    chown system system /sys/class/leds/led:rgb_red/ramp_step_ms
-    chmod 0660 /sys/class/leds/led:rgb_red/ramp_step_ms
-    chown system system /sys/class/leds/led:rgb_green/ramp_step_ms
-    chmod 0660 /sys/class/leds/led:rgb_green/ramp_step_ms
+    chown system system /sys/class/leds/red/pause_hi
+    chown system system /sys/class/leds/green/pause_hi
+    chown system system /sys/class/leds/blue/pause_hi
 
-    chown system system /sys/class/leds/led:rgb_blue/pause_hi
-    chmod 0660 /sys/class/leds/led:rgb_blue/pause_hi
-    chown system system /sys/class/leds/led:rgb_red/pause_hi
-    chmod 0660 /sys/class/leds/led:rgb_red/pause_hi
-    chown system system /sys/class/leds/led:rgb_green/pause_hi
-    chmod 0660 /sys/class/leds/led:rgb_green/pause_hi
+    chown system system /sys/class/leds/red/blink
+    chown system system /sys/class/leds/green/blink
+    chown system system /sys/class/leds/blue/blink
 
-    chown system system /sys/class/leds/led:rgb_blue/pause_lo
-    chmod 0660 /sys/class/leds/led:rgb_blue/pause_lo
-    chown system system /sys/class/leds/led:rgb_red/pause_lo
-    chmod 0660 /sys/class/leds/led:rgb_red/pause_lo
-    chown system system /sys/class/leds/led:rgb_green/pause_lo
-    chmod 0660 /sys/class/leds/led:rgb_green/pause_lo
+    chown system system /sys/class/leds/rgb/rgb_blink
 
-    chown system system /sys/class/leds/led:rgb_blue/duty_pcts
-    chmod 0660 /sys/class/leds/led:rgb_blue/duty_pcts
-    chown system system /sys/class/leds/led:rgb_red/duty_pcts
-    chmod 0660 /sys/class/leds/led:rgb_red/duty_pcts
-    chown system system /sys/class/leds/led:rgb_green/duty_pcts
-    chmod 0660 /sys/class/leds/led:rgb_green/duty_pcts
+    chown system system /sys/class/leds/red/ramp_step_ms
+    chown system system /sys/class/leds/green/ramp_step_ms
+    chown system system /sys/class/leds/blue/ramp_step_ms
 
-    chown system system /sys/class/leds/led:rgb_blue/start_idx
-    chmod 0660 /sys/class/leds/led:rgb_blue/start_idx
-    chown system system /sys/class/leds/led:rgb_red/start_idx
-    chmod 0660 /sys/class/leds/led:rgb_red/start_idx
-    chown system system /sys/class/leds/led:rgb_green/start_idx
-    chmod 0660 /sys/class/leds/led:rgb_green/start_idx
+    chown system system /sys/class/leds/red/duty_pcts
+    chown system system /sys/class/leds/green/duty_pcts
+    chown system system /sys/class/leds/blue/duty_pcts
 
-    chown system system /sys/class/leds/led:rgb_blue/lut_flags
-    chmod 0660 /sys/class/leds/led:rgb_blue/lut_flags
-    chown system system /sys/class/leds/led:rgb_red/lut_flags
-    chmod 0660 /sys/class/leds/led:rgb_red/lut_flags
-    chown system system /sys/class/leds/led:rgb_green/lut_flags
-    chmod 0660 /sys/class/leds/led:rgb_green/lut_flags
+    chown system system /sys/class/leds/red/start_idx
+    chown system system /sys/class/leds/green/start_idx
+    chown system system /sys/class/leds/blue/start_idx
+
+    chown system system /sys/class/leds/blue/lut_flags
+    chown system system /sys/class/leds/red/lut_flags
+    chown system system /sys/class/leds/green/lut_flags
+
+    chmod 660 /sys/class/leds/red/brightness
+    chmod 660 /sys/class/leds/green/brightness
+    chmod 660 /sys/class/leds/blue/brightness
+    chmod 660 /sys/class/leds/red/ramp_step_ms
+    chmod 660 /sys/class/leds/green/ramp_step_ms
+    chmod 660 /sys/class/leds/blue/ramp_step_ms
+    chmod 660 /sys/class/leds/red/duty_pcts
+    chmod 660 /sys/class/leds/green/duty_pcts
+    chmod 660 /sys/class/leds/blue/duty_pcts
+    chmod 660 /sys/class/leds/red/start_idx
+    chmod 660 /sys/class/leds/green/start_idx
+    chmod 660 /sys/class/leds/blue/start_idx
+    chmod 660 /sys/class/leds/rgb/rgb_blink
+    chmod 660 /sys/class/leds/blue/lut_flags
+    chmod 660 /sys/class/leds/red/lut_flags
+    chmod 660 /sys/class/leds/green/lut_flags
 
     chown bluetooth bluetooth /sys/module/bluetooth_power/parameters/power
     chown bluetooth net_bt /sys/class/rfkill/rfkill0/type
@@ -894,6 +889,28 @@ service msm_irqbalance /system/bin/msm_irqbalance -f /system/vendor/etc/msm_irqb
     disabled
     writepid /dev/cpuset/system-background/tasks
 
+    on enable-low-power
+
+    start qcom-mem
+
+    setprop sys.io.scheduler "bfq"
+
+    # add a cpuset for the camera daemon
+    # we want all the little cores for camera
+    mkdir /dev/cpuset/camera-daemon
+    chown system system /dev/cpuset/camera-daemon
+    chown system system /dev/cpuset/camera-daemon/tasks
+    chmod 0664 /dev/cpuset/camera-daemon/tasks
+
+    # Configure foreground and background cpusets
+    # Reserve CPU 7 for the top app
+    write /dev/cpuset/foreground/cpus 0-6
+    write /dev/cpuset/foreground/boost/cpus 0-3
+    write /dev/cpuset/background/cpus 4-6
+    write /dev/cpuset/system-background/cpus 4-6
+    write /dev/cpuset/top-app/cpus 0-7
+    write /dev/cpuset/camera-daemon/cpus 4-7
+
 # Coresight early boot service
 service cs-early-boot /system/bin/sh /persist/coresight/qdss.agent.sh early-boot /system/etc/init.qcom.debug.sh
     class core
@@ -906,10 +923,26 @@ service cs-post-boot /system/bin/sh /persist/coresight/qdss.agent.sh
     disabled
     oneshot
 
+service qcom-post-boot /system/bin/sh /system/etc/init.qcom.post_boot.sh
+    class late_start
+    user root
+    disabled
+    oneshot
+
 on property:sys.boot_completed=1
     start cs-post-boot
-
-on property:sys.dbg.coresight.enable=1
+    start qcom-post-boot
+    
+    trigger enable-low-power
+    # update cpusets now that boot is complete and we want
+    # better load balancing
+    write /dev/cpuset/top-app/cpus 0-7
+    write /dev/cpuset/foreground/boost/cpus 0-2
+    write /dev/cpuset/foreground/cpus 0-2
+    write /dev/cpuset/background/cpus 0
+    write /dev/cpuset/system-background/cpus 4-5
+    
+    on property:sys.dbg.coresight.enable=1
     write /persist/coresight/enable 1
 
 on property:sys.dbg.coresight.enable=0
@@ -923,3 +956,4 @@ service qseeproxydaemon /system/vendor/bin/qseeproxydaemon
 
 on property:vold.decrypt=trigger_restart_min_framework
 start time_daemon
+
