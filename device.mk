@@ -197,6 +197,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     lights.msm8996
 
+# HIDL
+    $(call inherit-product, $(LOCAL_PATH)/hidl.mk)
+
 # Dumpstate HAL
 PRODUCT_PACKAGES += \
     android.hardware.dumpstate@1.0-service.msm8996
