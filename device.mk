@@ -272,5 +272,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     power.msm8996
 
+# VNDK-SP
+PRODUCT_PACKAGES += \
+    vndk-sp
+
 # Call the proprietary setup
 $(call inherit-product, vendor/zuk/z2_plus/z2_plus-vendor.mk)
