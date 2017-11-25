@@ -48,6 +48,9 @@ PRODUCT_PACKAGES += \
     liboverlay \
     libtinyxml
 
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/calib.cfg:system/etc/calib.cfg
+
 # Device uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
