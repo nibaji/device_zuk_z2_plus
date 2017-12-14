@@ -162,6 +162,10 @@ BOARD_CHARGER_DISABLE_INIT_BLANK := true
 # Keystore
 TARGET_PROVIDES_KEYMASTER := true
 
+# Hidl manifests
+DEVICE_MANIFEST_FILE := $(VENDOR_PATH)/manifest.xml
+DEVICE_MATRIX_FILE := $(VENDOR_PATH)/compatibility_matrix.xml
+
 # System Properties
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 
