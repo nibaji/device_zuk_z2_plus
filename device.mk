@@ -133,12 +133,17 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/vendor/etc/permissions/android.hardware.bluetooth_le.xml \
     frameworks/native/data/etc/android.hardware.bluetooth.xml:system/vendor/etc/permissions/android.hardware.bluetooth.xml 
 
-# WLAN Chipset
-WLAN_CHIPSET := qca_cld
+# IPA Manager
+PRODUCT_PACKAGES += \
+    ipacm \
+    IPACM_cfg.xml
 
-RODUCT_PACKAGES += \
+# WIFI
+PRODUCT_PACKAGES += \
     libwpa_client \
     wificond \
+    wifilogd \
+    wlutil \
     hostapd \
     readmac \
     wpa_supplicant \
@@ -151,10 +156,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini \
     $(LOCAL_PATH)/wifi/WCNSS_cfg.dat:system/etc/firmware/wlan/qca_cld/WCNSS_cfg.dat
-
-ifneq ($(WLAN_CHIPSET),)
-PRODUCT_PACKAGES += $(WLAN_CHIPSET)_wlan.ko
-endif
 
 # RIL
 PRODUCT_PACKAGES += \
