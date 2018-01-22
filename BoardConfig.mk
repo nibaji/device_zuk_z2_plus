@@ -74,5 +74,8 @@ BOARD_USES_ALSA_AUDIO := true
 USE_CUSTOM_AUDIO_POLICY := 1
 USE_XML_AUDIO_POLICY_CONF := 1
 
+# System Properties
+TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
+
 # Inherit the proprietary files
 -include vendor/zuk/zuk2_plus/BoardConfigVendor.mk
