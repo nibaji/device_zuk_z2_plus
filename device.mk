@@ -106,6 +106,9 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/vendor/etc/permissions/android.hardware.bluetooth_le.xml \
     frameworks/native/data/etc/android.hardware.bluetooth.xml:system/vendor/etc/permissions/android.hardware.bluetooth.xml 
 
+# SDcard
+PRODUCT_CHARACTERISTICS := nosdcard
+
 # Sensor HAL conf file
 PRODUCT_COPY_FILES += \
     device/qcom/msm8996/sensors/hals.conf:system/etc/sensors/hals.conf
