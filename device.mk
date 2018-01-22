@@ -101,6 +101,11 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/msm8996-tasha-mtp-snd-card_Button_Jack.kl:system/usr/keylayout/msm8996-tasha-mtp-snd-card_Button_Jack.kl \
     $(LOCAL_PATH)/keylayout/qpnp_pon.kl:system/usr/keylayout/qpnp_pon.kl
 
+# Bluetooth
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/vendor/etc/permissions/android.hardware.bluetooth_le.xml \
+    frameworks/native/data/etc/android.hardware.bluetooth.xml:system/vendor/etc/permissions/android.hardware.bluetooth.xml 
+
 # Sensor HAL conf file
 PRODUCT_COPY_FILES += \
     device/qcom/msm8996/sensors/hals.conf:system/etc/sensors/hals.conf
