@@ -47,5 +47,9 @@ TARGET_POWERHAL_VARIANT := qcom
 # RIL
 TARGET_RIL_VARIANT := caf
 
+# Camera
+BOARD_QTI_CAMERA_32BIT_ONLY := true
+USE_DEVICE_SPECIFIC_CAMERA := true
+
 # Inherit the proprietary files
 -include vendor/zuk/zuk2_plus/BoardConfigVendor.mk
