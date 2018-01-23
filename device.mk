@@ -156,6 +156,18 @@ ifneq ($(WLAN_CHIPSET),)
 PRODUCT_PACKAGES += $(WLAN_CHIPSET)_wlan.ko
 endif
 
+# Ramdisk
+PRODUCT_PACKAGES += \
+    fstab.qcom \
+    init.qcom.power.rc \
+    init.qcom.rc \
+    init.qcom.sh \
+    init.qcom.usb.rc \
+    init.qcom.usb.sh \
+    init.qcom.bt.sh \
+    ueventd.qcom.rc \
+    init.qcom.post_boot.sh
+
 # RIL
 PRODUCT_PACKAGES += \
     librmnetctl \
