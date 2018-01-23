@@ -106,6 +106,29 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/vendor/etc/permissions/android.hardware.bluetooth_le.xml \
     frameworks/native/data/etc/android.hardware.bluetooth.xml:system/vendor/etc/permissions/android.hardware.bluetooth.xml 
 
+# WLAN Chipset
+WLAN_CHIPSET := qca_cld
+
+RODUCT_PACKAGES += \
+    libwpa_client \
+    wificond \
+    hostapd \
+    readmac \
+    wpa_supplicant \
+    wpa_supplicant.conf
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
+    $(LOCAL_PATH)/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf 
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini \
+    $(LOCAL_PATH)/wifi/WCNSS_cfg.dat:system/etc/firmware/wlan/qca_cld/WCNSS_cfg.dat
+
+ifneq ($(WLAN_CHIPSET),)
+PRODUCT_PACKAGES += $(WLAN_CHIPSET)_wlan.ko
+endif
+
 # SDcard
 PRODUCT_CHARACTERISTICS := nosdcard
 
