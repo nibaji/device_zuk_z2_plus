@@ -85,6 +85,7 @@ ro.gps.agps_provider=1
 
 # Hdmi
 qcom.hw.aac.encoder=true
+persist.vendor.audio.speaker.prot.enable=true
 
 # Media
 flac.sw.decoder.24bit.support=true
