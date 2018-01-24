@@ -278,3 +278,4 @@ PRODUCT_PACKAGES += \
 
 # Call the proprietary setup
 $(call inherit-product, vendor/zuk/z2_plus/z2_plus-vendor.mk)
+$(call inherit-product-if-exists, vendor/zuk/msm8996-common/msm8996-common-vendor.mk)
