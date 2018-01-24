@@ -235,7 +235,7 @@ PRODUCT_COPY_FILES += \
 
 # Sensor HAL conf file
 PRODUCT_COPY_FILES += \
-    device/qcom/msm8996/sensors/hals.conf:system/etc/sensors/hals.conf
+    $(LOCAL_PATH)/sensors/hals.conf:system/etc/sensors/hals.conf
 
 # IPC router config
 PRODUCT_COPY_FILES += \
