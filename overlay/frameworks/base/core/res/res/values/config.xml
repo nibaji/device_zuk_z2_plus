@@ -77,21 +77,8 @@
     <!-- If this is true, the screen will come on when you unplug usb/power/whatever. -->
     <bool name="config_unplugTurnsOnScreen">true</bool>
 
-    <!-- Does the notification LED support multiple colors?
-         Used to decide if the user can change the colors -->
-    <bool name="config_multiColorNotificationLed">false</bool>
-
-    <!-- Does the battery LED support multiple colors?
-         Used to decide if the user can change the colors -->
-    <bool name="config_multiColorBatteryLed">false</bool>    
-    <!--Used to decide if we show pulse settings -->
-    <bool name="config_ledCanPulse">true</bool>
-
     <!-- Is the notification LED intrusive? Used to decide if there should be a disable option -->
     <bool name="config_intrusiveNotificationLed">true</bool>
-
-    <!-- Is the battery LED intrusive? Used to decide if there should be a disable option -->
-    <bool name="config_intrusiveBatteryLed">true</bool>
 
     <!-- Vibrator pattern for feedback about a long screen/key press -->
     <integer-array name="config_longPressVibePattern">
@@ -133,7 +120,7 @@
             64 - Volume rocker
          For example, a device with Home, Back and Menu keys would set this
          config to 7. -->
-    <integer name="config_deviceHardwareKeys">65</integer>
+    <integer name="config_deviceHardwareKeys">95</integer>
 
     <!-- Hardware keys present on the device with the ability to wake, stored as a bit field.
          This integer should equal the sum of the corresponding value for each
@@ -414,66 +401,5 @@
         <item>"/system/framework/arm64/boot.oat"</item>
         <item>"/system/framework/arm64/boot-core-libart.oat"</item>
    </string-array>
-
-<!--  From CAF  -->
-
-   <!-- Whether cpu boost is enabled for application's 1st launch. -->
-    <bool name="config_enableCpuBoostForAppLaunch">true</bool>
-    <integer name="launchboost_timeout_param">2000</integer>
-    <integer-array name="launchboost_param_value">
-        <item>0x40C00000</item> <!-- SCHEDBOOST resource opcode-->
-        <item>0x1</item>        <!-- SCHEDBOOST resource value-->
-        <item>0x40804000</item> <!-- CPUBOOST_MAX_FREQ BIG Core resource opcode-->
-        <item>0xFFF</item>     <!-- CPUBOOST MAX_FREQ resource value-->
-        <item>0x40804100</item> <!-- CPUBOOST_MAX_FREQ LITTLE Core resource opcode-->
-        <item>0xFFF</item>     <!-- CPUBOOST MAX_FREQ resource value-->
-        <item>0x40800000</item> <!-- CPUBOOST_MIN_FREQ BIG Core resource opcode-->
-        <item>0xFFF</item>     <!-- CPUBOOST MIN_FREQ resource value-->
-        <item>0x40800100</item> <!-- CPUBOOST_MIN_FREQ LITTLE Core resource opcode-->
-        <item>0xFFF</item>     <!-- CPUBOOST MIN_FREQ resource value-->
-        <item>0x41800000</item> <!-- CPUBW_MIN_FREQ resource opcode-->
-        <item>140</item>       <!-- CPUBW_MIN_FREQ resource value-->
-        <item>0x40400000</item> <!-- POWER COLLAPSE resource opcode-->
-        <item>0x1</item>        <!-- POWER COLLAPSE resource value-->
-        <item>0x42C10000</item> <!-- STORAGE CLK SCALING resource opcode-->
-        <item>0x1</item>        <!-- STORAGE CLK SCALING resource value-->
-    </integer-array>
-   <bool name="config_enableCpuBoostForOverScrollerFling">true</bool>
-   <integer-array name="flingboost_param_value">
-        <item>0x41800000</item> <!-- CPUBW_MIN_FREQ resource opcode-->
-        <item>0x33</item>       <!-- CPUBW_MIN_FREQ resource value-->
-        <item>0x40800000</item> <!-- CPUBOOST_MIN_FREQ BIG CORE resource opcode -->
-        <item>1000</item> <!-- CPUBOOST MIN_FREQ resource value -->
-        <item>0x40800100</item> <!-- CPUBOOST_MIN_FREQ LITTLE Core resource opcode -->
-        <item>1000</item> <!-- CPUBOOST MIN_FREQ resource value -->
-        <item>0x40C00000</item> <!-- SCHEDBOOST resource opcode-->
-        <item>0x1</item>        <!-- SCHEDBOOST resource value-->
-        <item>0x40C28000</item> <!-- SCHEDGROUP resource opcode-->
-        <item>0x1</item>        <!-- SCHEDGROUP resource value-->
-   </integer-array>
-
-   <bool name="config_enableCpuBoostForScroller">true</bool>
-   <integer-array name="scrollboost_param_value">
-        <item>0x40C00000</item> <!-- SCHEDBOOST resource opcode-->
-        <item>0x1</item>        <!-- SCHEDBOOST resource value-->
-   </integer-array>
-
-   <bool name="config_debugBoost">true</bool>
-   <!-- Activities list for custom boosts -->
-   <string-array translatable="false" name="debugBoost_activityList">
-        <item>com.android.gallery3d</item>
-        <item>com.android.music</item>
-        <item>com.android.contacts</item>
-        <item>com.android.chrome</item>
-        <item>com.google.android.gm</item>
-   </string-array>
-   <!-- Params for custom debug  boost -->
-   <integer name="debugBoost_timeout">150</integer>
-   <integer-array name="debugBoost_param_value">
-        <item>0x40800100</item> <!-- SCALING_MIN_FREQ little cluster resource opcode-->
-        <item>0x4A6</item>      <!-- SCALING_MIN_FREQ of 1190 MHz for little cluster resource value-->
-        <item>0x40800000</item> <!-- SCALING_MIN_FREQ big cluster resource opcode -->
-        <item>0x4A6</item>      <!-- SCALING_MIN_FREQ of 1190 MHz big cluster resource value -->
-   </integer-array>
 
 </resources>
