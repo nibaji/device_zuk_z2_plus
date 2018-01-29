@@ -191,5 +191,16 @@ DEVICE_MATRIX_FILE := $(DEVICE_PATH)/compatibility_matrix.xml
 # System Properties
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 
+# Dexpreopt
+ifeq ($(HOST_OS),linux)
+ifneq ($(TARGET_BUILD_VARIANT),eng)
+WITH_DEXPREOPT := true
+WITH_DEXPREOPT_DEBUG_INFO := false
+USE_DEX2OAT_DEBUG := false
+DONT_DEXPREOPT_PREBUILTS := true
+WITH_DEXPREOPT_PIC := true
+endif
+endif
+
 # Inherit the proprietary files
 -include vendor/zuk/zuk2_plus/BoardConfigVendor.mk
