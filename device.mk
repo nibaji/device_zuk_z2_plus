@@ -170,7 +170,8 @@ PRODUCT_PACKAGES += \
     init.qcom.usb.sh \
     init.qcom.bt.sh \
     ueventd.qcom.rc \
-    init.qcom.post_boot.sh
+    init.qcom.post_boot.sh \
+    init.zuk.usb.rc
 
 # RIL
 PRODUCT_PACKAGES += \
