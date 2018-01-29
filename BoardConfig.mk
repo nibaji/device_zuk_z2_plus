@@ -17,7 +17,7 @@
 DEVICE_PATH := device/zuk/z2_plus
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := z2plus,z2_plus
+TARGET_OTA_ASSERT_DEVICE := z2plus,z2_plus,z2131,z2132
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864
