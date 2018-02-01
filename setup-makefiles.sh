@@ -1,17 +1,9 @@
 #!/bin/bash
 VENDOR=zuk
-DEVICE=msm8996-common
+DEVICE=z2_plus
 
 OUTDIR=vendor/$VENDOR/$DEVICE
 MAKEFILE=../../../$OUTDIR/$DEVICE-vendor.mk
-
-echo "creating new proprietary-files.txt..."
-cd ../../../$OUTDIR/proprietary
-find . -type f |cut -c 3- > proprietary-files.txt
-sed -i '/.apk/d' ./proprietary-files.txt
-sed -i '/proprietary-files.txt/d' ./proprietary-files.txt
-mv proprietary-files.txt ../../../../device/$VENDOR/$DEVICE/proprietary-files.txt
-cd ../../../../device/$VENDOR/$DEVICE
 
 (cat << EOF) > $MAKEFILE
 # Copyright (C) 2016 The CyanogenMod Project
@@ -59,8 +51,6 @@ MAKEFILE=../../../$OUTDIR/$DEVICE-vendor.mk
 
 PRODUCT_PACKAGES += \\
     libloc_api_v02 \\
-    libsdm-disp-vndapis \\
-    libgpustats \\
     libtime_genoff \\
     datastatusnotification \\
     QtiTelephonyService \\
@@ -69,7 +59,11 @@ PRODUCT_PACKAGES += \\
     CNEService \\
     com.qualcomm.location \\
     qcrilmsgtunnel \\
+    colorservice \\
     qcrilhook \\
+    com.qualcomm.qti.Performance.xml \\
+    libqti_performance \\
+    QPerformance \\
     ims \\
     imssettings
 EOF
@@ -208,7 +202,17 @@ LOCAL_DEX_PREOPT := false
 LOCAL_MODULE_SUFFIX := .apk
 LOCAL_PRIVILEGED_MODULE := true
 include \$(BUILD_PREBUILT)
-
+include \$(CLEAR_VARS)
+LOCAL_MODULE := colorservice
+LOCAL_MODULE_OWNER := zuk
+LOCAL_SRC_FILES := proprietary/vendor/app/colorservice/colorservice.apk
+LOCAL_CERTIFICATE := platform
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_CLASS := APPS
+LOCAL_DEX_PREOPT := false
+LOCAL_MODULE_SUFFIX := .apk
+LOCAL_PROPRIETARY_MODULE := true
+include \$(BUILD_PREBUILT)
 include \$(CLEAR_VARS)
 LOCAL_MODULE := qcrilhook
 LOCAL_MODULE_OWNER := zuk
@@ -243,10 +247,10 @@ LOCAL_PROPRIETARY_MODULE := true
 include \$(BUILD_PREBUILT)
 
 include \$(CLEAR_VARS)
-LOCAL_MODULE := libsdm-disp-vndapis
+LOCAL_MODULE := libsdm-disp-apis
 LOCAL_MODULE_OWNER := zuk
-LOCAL_SRC_FILES_64 := proprietary/vendor/lib64/libsdm-disp-vndapis.so
-LOCAL_SRC_FILES_32 := proprietary/vendor/lib/libsdm-disp-vndapis.so
+LOCAL_SRC_FILES_64 := proprietary/vendor/lib64/libsdm-disp-apis.so
+LOCAL_SRC_FILES_32 := proprietary/vendor/lib/libsdm-disp-apis.so
 LOCAL_MULTILIB := both
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_CLASS := SHARED_LIBRARIES
@@ -268,5 +272,5 @@ include \$(BUILD_PREBUILT)
 
 \$(shell mkdir -p \$(PRODUCT_OUT)/proprietary/lib/egl && pushd \$(PRODUCT_OUT)/proprietary/lib > /dev/null && ln -s egl/libEGL_adreno.so libEGL_adreno.so && popd > /dev/null)
 \$(shell mkdir -p \$(PRODUCT_OUT)/proprietary/lib64/egl && pushd \$(PRODUCT_OUT)/proprietary/lib64 > /dev/null && ln -s egl/libEGL_adreno.so libEGL_adreno.so && popd > /dev/null)
-
+endif
 EOF
