@@ -65,10 +65,10 @@ ro.panel.mountflip=3
 ro.opa.eligible_device=true
 
 # enable navigation bar
-qemu.hw.mainkeys=0
+#qemu.hw.mainkeys=0
 
 #Camera fullscreen doesn't show navigation bar
-Camera.no_navigation_bar=true
+#Camera.no_navigation_bar=true
 
 # Graphics
 debug.gralloc.enable_fb_ubwc=1
