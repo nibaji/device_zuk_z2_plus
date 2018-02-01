@@ -16,6 +16,8 @@
 
 DEVICE_PATH := device/zuk/z2_plus
 
+TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_PATH)/include
+
 # Assert
 TARGET_OTA_ASSERT_DEVICE := z2plus,z2_plus,z2131,z2132
 
