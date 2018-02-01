@@ -44,6 +44,8 @@ PRODUCT_PACKAGES += \
     gralloc.msm8996 \
     hwcomposer.msm8996 \
     memtrack.msm8996 \
+    libdisplayconfig \
+    libhwc2on1adapter \
     libgenlock \
     liboverlay \
     libtinyxml
@@ -309,4 +311,3 @@ $(call inherit-product-if-exists, vendor/zuk/msm8996-common/msm8996-common-vendo
 
 # MSM8996 Headers
 PRODUCT_VENDOR_KERNEL_HEADERS := hardware/qcom/msm8996/kernel-headers
-
