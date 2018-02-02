@@ -210,7 +210,6 @@ PRODUCT_COPY_FILES += \
 
 # GPS
 PRODUCT_PACKAGES += \
-<<<<<<< HEAD
     gps.msm8996 \
     libcurl \
     libgnsspps \
