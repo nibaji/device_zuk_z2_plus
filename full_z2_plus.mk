@@ -25,5 +25,5 @@ $(call inherit-product, device/zuk/z2_plus/device.mk)
 PRODUCT_DEVICE := z2_plus
 PRODUCT_NAME := full_z2_plus
 PRODUCT_BRAND := ZUK
-PRODUCT_MODEL := z2131/z2132
+PRODUCT_MODEL := Z2 Plus
 PRODUCT_MANUFACTURER := zuk
