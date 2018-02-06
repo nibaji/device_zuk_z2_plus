@@ -17,15 +17,17 @@
 $(call inherit-product, device/zuk/z2_plus/full_z2_plus.mk)
 
 # Inherit some common Lineage stuff
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+$(call inherit-product, vendor/aim/config/common_full_phone.mk)
 
 # Set those variables here to overwrite the inherited values.
-PRODUCT_NAME := lineage_z2_plus
+PRODUCT_NAME := aim_z2_plus
 BOARD_VENDOR := zuk
 PRODUCT_DEVICE := z2_plus
 PRODUCT_GMS_CLIENTID_BASE := android-zuk
 TARGET_VENDOR_PRODUCT_NAME := z2_plus
 TARGET_VENDOR_DEVICE_NAME := z2_plus
+
+AIM_BUILD_TYPE := OFFICIAL
 
 # Overlays (inherit after vendor/lineage to ensure we override it)
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
@@ -36,4 +38,11 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     PRODUCT_NAME="z2_plus" \
     BUILD_FINGERPRINT="ZUK/z2_plus/z2_plus:7.0/NRD90M/3.1.117_171110:user/release-keys" \
     PRIVATE_BUILD_DESC="z2_plus-user 7.0 NRD90M 3.1.117_171110 release-keys"
+
+# Aim OTA Config
+PRODUCT_PROPERTY_OVERRIDES += \
+        ro.ota.romname=AIM-ROM \
+        ro.ota.version=$(shell date +"%Y%m%d") \
+	ro.aim.maintainer=Nidhun Balaji T.R. (nibaji) \
+        ro.ota.manifest=https://raw.githubusercontent.com/AIMROM/OFFICIAL_DEVICES/N/z2_plus.xml
 
