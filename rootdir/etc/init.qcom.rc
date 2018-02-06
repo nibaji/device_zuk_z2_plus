@@ -864,10 +864,6 @@ service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
     disabled
     oneshot
 
-# permission for wpa_supplicant.conf
- chmod 0660 /system/etc/wifi/wpa_supplicant.conf
- chmod 0660 /data/misc/wifi/wpa_supplicant.conf 
-
 service cnss-daemon /system/bin/cnss-daemon -n -l
     class late_start
     user system
@@ -960,4 +956,3 @@ service qseeproxydaemon /system/vendor/bin/qseeproxydaemon
 
 on property:vold.decrypt=trigger_restart_min_framework
 start time_daemon
-

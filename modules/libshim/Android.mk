@@ -17,6 +17,7 @@
 
 LOCAL_PATH := $(call my-dir)
 
+# get_process_name shim
 include $(CLEAR_VARS)
 LOCAL_SRC_FILES := get_process_name.c
 LOCAL_MODULE := libshims_get_process_name

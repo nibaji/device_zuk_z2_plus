@@ -15,3 +15,6 @@ dontaudit netutils_wrapper netmgrd:unix_stream_socket { getattr read write appen
 dontaudit netutils_wrapper sysfs_msm_subsys:file read;
 dontaudit netutils_wrapper netmgrd:tcp_socket { getattr read write append };
 dontaudit netutils_wrapper netmgrd:socket { read write };
+allow netutils_wrapper self:capability sys_module;
+allow netutils_wrapper netmgrd:netlink_socket { read write };
+

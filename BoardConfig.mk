@@ -117,6 +117,7 @@ MAX_VIRTUAL_DISPLAY_DIMENSION := 4096
 # Camera
 BOARD_QTI_CAMERA_32BIT_ONLY := true
 USE_DEVICE_SPECIFIC_CAMERA := true
+DEVICE_SPECIFIC_CAMERA_PATH := $(DEVICE_PATH)/camera
 
 # Audio
 AUDIO_USE_LL_AS_PRIMARY_OUTPUT := true
@@ -159,6 +160,7 @@ BOARD_ANT_WIRELESS_DEVICE := "qualcomm-uart"
 #BOARD_USES_QCNE := true
 
 # Wifi
+# Wifi
 BOARD_HAS_QCOM_WLAN := true
 BOARD_HAS_QCOM_WLAN_SDK := true
 BOARD_WLAN_DEVICE := qcwcn
@@ -166,7 +168,6 @@ BOARD_WPA_SUPPLICANT_DRIVER := NL80211
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
 BOARD_HOSTAPD_DRIVER := NL80211
 BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
-HOSTAPD_VERSION := VER_0_8_X
 WIFI_DRIVER_FW_PATH_AP := "ap"
 WIFI_DRIVER_FW_PATH_STA := "sta"
 WIFI_DRIVER_FW_PATH_P2P := "p2p"
@@ -198,7 +199,7 @@ TARGET_PROVIDES_KEYMASTER := true
 
 # SELinux
 # include device/qcom/sepolicy/sepolicy.mk
-BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
+# BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
 
 # Hidl manifests
 DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/manifest.xml
@@ -208,15 +209,15 @@ DEVICE_MATRIX_FILE := $(DEVICE_PATH)/compatibility_matrix.xml
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 
 # Dexpreopt
-ifeq ($(HOST_OS),linux)
-ifneq ($(TARGET_BUILD_VARIANT),eng)
-WITH_DEXPREOPT := true
-WITH_DEXPREOPT_DEBUG_INFO := false
-USE_DEX2OAT_DEBUG := false
-DONT_DEXPREOPT_PREBUILTS := true
-WITH_DEXPREOPT_PIC := true
-endif
-endif
+#ifeq ($(HOST_OS),linux)
+#ifneq ($(TARGET_BUILD_VARIANT),eng)
+#WITH_DEXPREOPT := true
+#WITH_DEXPREOPT_DEBUG_INFO := false
+#USE_DEX2OAT_DEBUG := false
+#DONT_DEXPREOPT_PREBUILTS := true
+#WITH_DEXPREOPT_PIC := true
+#endif
+#endif
 
 # Inherit the proprietary files
 -include vendor/zuk/zuk2_plus/BoardConfigVendor.mk
