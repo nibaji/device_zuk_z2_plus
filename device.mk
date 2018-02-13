@@ -57,6 +57,12 @@ PRODUCT_COPY_FILES += \
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
+# HWUI overrides
+$(call inherit-product, frameworks/native/build/phone-xxhdpi-3072-hwui-memory.mk)
+
+# Dalvik overrides
+$(call inherit-product, frameworks/native/build/phone-xxhdpi-3072-dalvik-heap.mk)
+
 # Boot animation
 TARGET_SCREEN_HEIGHT := 1920
 TARGET_SCREEN_WIDTH := 1080
@@ -171,6 +177,12 @@ PRODUCT_PACKAGES += \
     libxml2 \
     rild_socket
 
+# Connectivity Engine support (CNE)
+PRODUCT_PACKAGES += \
+    cneapiclient \
+    com.quicinc.cne \
+    services-ext
+
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.cdma.xml:system/vendor/etc/permissions/android.hardware.telephony.cdma.xml \
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/vendor/etc/permissions/android.hardware.telephony.gsm.xml
@@ -186,11 +198,15 @@ PRODUCT_COPY_FILES += \
 
 # Sensor HAL conf file
 PRODUCT_COPY_FILES += \
-    device/qcom/msm8996/sensors/hals.conf:system/etc/sensors/hals.conf
+    $(LOCAL_PATH)/sensors/hals.conf:system/etc/sensors/hals.conf
 
 # IPC router config
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sec_config:system/etc/sec_config
+
+# QMI
+PRODUCT_PACKAGES += \
+    libjso
 
 # QTI
 PRODUCT_COPY_FILES += \
@@ -230,9 +246,24 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/vendor/etc/permissions/handheld_core_hardware.xml \
     frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/vendor/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml
 
+# HIDL manifest
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/manifest.xml:system/vendor/manifest.xml
+
+#HIDL
+$(call inherit-product, $(LOCAL_PATH)/hidl.mk)
+
 # VNDK-SP:
 PRODUCT_PACKAGES += \
     vndk-sp
+
+#For android_filesystem_config.h
+PRODUCT_PACKAGES += \
+    fs_config_files
+
+# Lights
+PRODUCT_PACKAGES += \
+    lights.msm8996
 
 # Power
 PRODUCT_PACKAGES += \

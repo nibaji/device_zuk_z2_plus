@@ -12,9 +12,18 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
+#
+# This file sets variables that control the way modules are built
+# thorughout the system. It should not be used to conditionally
+# disable makefiles (the proper mechanism to control what gets
+# included in a build is to use PRODUCT_PACKAGES in a product
+# definition file).
 #
 
 DEVICE_PATH := device/zuk/z2_plus
+
+TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_PATH)/include
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864
@@ -42,6 +51,12 @@ TARGET_KERNEL_SOURCE := kernel/zuk/msm8996
 #Filesystems
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
+
+# Filesystem
+TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/config.fs
+
+# Crypto
+TARGET_HW_DISK_ENCRYPTION := true
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := msm8996
@@ -73,6 +88,7 @@ TARGET_POWERHAL_VARIANT := qcom
 
 # RIL
 TARGET_RIL_VARIANT := caf
+PROTOBUF_SUPPORTED := true
 
 # Adreno
 BOARD_USES_ADRENO := true
@@ -126,6 +142,7 @@ USE_XML_AUDIO_POLICY_CONF := 1
 
 # Media
 TARGET_USES_MEDIA_EXTENSIONS := true
+BOARD_SECCOMP_POLICY := $(DEVICE_PATH)/seccomp
 
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(VENDOR_PATH)/bluetooth
@@ -157,12 +174,62 @@ TARGET_TAP_TO_WAKE_NODE := "/sys/devices/virtual/touch/tp_dev/gesture_on"
 # Charger
 BOARD_CHARGER_ENABLE_SUSPEND := true
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
+BACKLIGHT_PATH := "/sys/class/leds/lcd-backlight/brightness"
+BLINK_PATH     := "/sys/class/leds/led:rgb_red/blink"
+RED_LED_PATH   := "/sys/class/leds/led:rgb_red/brightness"
+GREEN_LED_PATH := "/sys/class/leds/led:rgb_green/brightness"
+BLUE_LED_PATH  := "/sys/class/leds/led:rgb_blue/brightness"
+BOARD_GLOBAL_CFLAGS += -DBATTERY_REAL_INFO
+
+# Lights
+TARGET_PROVIDES_LIBLIGHT := true
+
+# GPS
+BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := msm8996
+BOARD_VENDOR_QCOM_LOC_PDK_FEATURE_SET := true
+TARGET_NO_RPC := true
+USE_DEVICE_SPECIFIC_GPS := true
+
+# Hidl manifests
+DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/manifest.xml
+DEVICE_MATRIX_FILE := $(DEVICE_PATH)/compatibility_matrix.xml
 
 # Keystore
 TARGET_PROVIDES_KEYMASTER := true
 
-# System Properties
+# Init
+TARGET_INIT_VENDOR_LIB := libinit_msm8996
+TARGET_RECOVERY_DEVICE_MODULES := libinit_msm8996
+TARGET_PLATFORM_DEVICE_BASE := /devices/soc/
+
+# Tap to wake
+TARGET_TAP_TO_WAKE_NODE := "/sys/devices/virtual/touch/tp_dev/gesture_on"
+
+# CNE and DPM
+BOARD_USES_QCNE := true
+
+#QCOM Power
+TARGET_POWERHAL_VARIANT := qcom
+
+# Properties
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
+
+# Dexpreopt
+ifeq ($(HOST_OS),linux)
+ifneq ($(TARGET_BUILD_VARIANT),eng)
+WITH_DEXPREOPT := true
+WITH_DEXPREOPT_DEBUG_INFO := false
+USE_DEX2OAT_DEBUG := false
+DONT_DEXPREOPT_PREBUILTS := true
+WITH_DEXPREOPT_BOOT_IMG_AND_SYSTEM_SERVER_ONLY := true
+PRODUCT_SYSTEM_SERVER_APPS := true
+PRODUCT_DEXPREOPT_SPEED_APPS := true
+endif
+endif
+
+# Lineage Hardware
+BOARD_HARDWARE_CLASS += \
+    $(DEVICE_PATH)/lineagehw
 
 # Inherit the proprietary files
 -include vendor/zuk/zuk2_plus/BoardConfigVendor.mk
