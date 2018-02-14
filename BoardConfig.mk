@@ -168,9 +168,8 @@ QCOM_BT_USE_SMD_TTY := true
 BOARD_ANT_WIRELESS_DEVICE := "qualcomm-uart"
 
 # CNE and DPM
-#BOARD_USES_QCNE := true
+BOARD_USES_QCNE := true
 
-# Wifi
 # Wifi
 BOARD_HAS_QCOM_WLAN := true
 BOARD_HAS_QCOM_WLAN_SDK := true
@@ -187,7 +186,11 @@ WPA_SUPPLICANT_VERSION := VER_0_8_X
 #GPS
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := $(TARGET_BOARD_PLATFORM)
 BOARD_VENDOR_QCOM_LOC_PDK_FEATURE_SET := true
+TARGET_NO_RPC := true
 USE_DEVICE_SPECIFIC_GPS := true
+
+# Lights
+TARGET_PROVIDES_LIBLIGHT := true
 
 # Lineage Hardware
 BOARD_HARDWARE_CLASS += \
@@ -233,10 +236,6 @@ PRODUCT_SYSTEM_SERVER_APPS := true
 PRODUCT_DEXPREOPT_SPEED_APPS := true
 endif
 endif
-
-# Lineage Hardware
-BOARD_HARDWARE_CLASS += \
-    $(DEVICE_PATH)/lineagehw
 
 # Inherit the proprietary files
 -include vendor/zuk/zuk2_plus/BoardConfigVendor.mk
