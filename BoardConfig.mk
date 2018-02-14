@@ -25,6 +25,9 @@ DEVICE_PATH := device/zuk/z2_plus
 
 TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_PATH)/include
 
+# Assert
+TARGET_OTA_ASSERT_DEVICE := z2plus,z2_plus,z2131,z2132
+
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864
 BOARD_CACHEIMAGE_PARTITION_SIZE := 268435456
@@ -47,13 +50,16 @@ TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 TARGET_KERNEL_SOURCE := kernel/zuk/msm8996
+TARGET_KERNEL_CONFIG := z2_plus_defconfig
 
 #Filesystems
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 
-# Filesystem
 TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/config.fs
+
+# Recovery
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.qcom
 
 # Crypto
 TARGET_HW_DISK_ENCRYPTION := true
@@ -77,7 +83,12 @@ TARGET_2ND_ARCH := arm
 TARGET_2ND_ARCH_VARIANT := armv7-a-neon
 TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
-TARGET_2ND_CPU_VARIANT := kryo
+TARGET_2ND_CPU_VARIANT := cortex-a53
+
+TARGET_USES_64_BIT_BINDER := true
+
+# CPU
+TARGET_CPU_CORTEX_A53 := true
 
 # QCOM hardware
 BOARD_USES_QCOM_HARDWARE := true
@@ -116,6 +127,7 @@ MAX_VIRTUAL_DISPLAY_DIMENSION := 4096
 # Camera
 BOARD_QTI_CAMERA_32BIT_ONLY := true
 USE_DEVICE_SPECIFIC_CAMERA := true
+DEVICE_SPECIFIC_CAMERA_PATH := $(DEVICE_PATH)/camera
 
 # Audio
 AUDIO_USE_LL_AS_PRIMARY_OUTPUT := true
@@ -145,12 +157,20 @@ TARGET_USES_MEDIA_EXTENSIONS := true
 BOARD_SECCOMP_POLICY := $(DEVICE_PATH)/seccomp
 
 # Bluetooth
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(VENDOR_PATH)/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
 BOARD_HAS_QCA_BT_ROME := true
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_QCOM := true
 QCOM_BT_USE_BTNV := true
+QCOM_BT_USE_SMD_TTY := true
 
+# ANT+
+BOARD_ANT_WIRELESS_DEVICE := "qualcomm-uart"
+
+# CNE and DPM
+#BOARD_USES_QCNE := true
+
+# Wifi
 # Wifi
 BOARD_HAS_QCOM_WLAN := true
 BOARD_HAS_QCOM_WLAN_SDK := true
@@ -164,12 +184,22 @@ WIFI_DRIVER_FW_PATH_STA := "sta"
 WIFI_DRIVER_FW_PATH_P2P := "p2p"
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 
+#GPS
+BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := $(TARGET_BOARD_PLATFORM)
+BOARD_VENDOR_QCOM_LOC_PDK_FEATURE_SET := true
+USE_DEVICE_SPECIFIC_GPS := true
+
 # Lineage Hardware
 BOARD_HARDWARE_CLASS += \
     $(DEVICE_PATH)/lineagehw
 
 # Tap to wake node
 TARGET_TAP_TO_WAKE_NODE := "/sys/devices/virtual/touch/tp_dev/gesture_on"
+
+# Init
+TARGET_INIT_VENDOR_LIB := libinit_z2_plus
+TARGET_RECOVERY_DEVICE_MODULES := libinit_z2_plus
+TARGET_PLATFORM_DEVICE_BASE := /devices/soc/
 
 # Charger
 BOARD_CHARGER_ENABLE_SUSPEND := true
@@ -181,37 +211,14 @@ GREEN_LED_PATH := "/sys/class/leds/led:rgb_green/brightness"
 BLUE_LED_PATH  := "/sys/class/leds/led:rgb_blue/brightness"
 BOARD_GLOBAL_CFLAGS += -DBATTERY_REAL_INFO
 
-# Lights
-TARGET_PROVIDES_LIBLIGHT := true
-
-# GPS
-BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := msm8996
-BOARD_VENDOR_QCOM_LOC_PDK_FEATURE_SET := true
-TARGET_NO_RPC := true
-USE_DEVICE_SPECIFIC_GPS := true
+# Keystore
+TARGET_PROVIDES_KEYMASTER := true
 
 # Hidl manifests
 DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/manifest.xml
 DEVICE_MATRIX_FILE := $(DEVICE_PATH)/compatibility_matrix.xml
 
-# Keystore
-TARGET_PROVIDES_KEYMASTER := true
-
-# Init
-TARGET_INIT_VENDOR_LIB := libinit_msm8996
-TARGET_RECOVERY_DEVICE_MODULES := libinit_msm8996
-TARGET_PLATFORM_DEVICE_BASE := /devices/soc/
-
-# Tap to wake
-TARGET_TAP_TO_WAKE_NODE := "/sys/devices/virtual/touch/tp_dev/gesture_on"
-
-# CNE and DPM
-BOARD_USES_QCNE := true
-
-#QCOM Power
-TARGET_POWERHAL_VARIANT := qcom
-
-# Properties
+# System Properties
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 
 # Dexpreopt
